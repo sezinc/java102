@@ -56,16 +56,15 @@ class Book implements Comparable<Book> {
     }
 
     @Override
-    public int compareTo(Book o) {
-        // if the string are not equal
-        if (this.name.compareTo(o.name) != 0) {
-            return this.name.compareTo(o.name);
-        }
-        else {
-            // we compare int values
-            // if the strings are equal
-//            System.out.println("Yok");
-            return 0;
+    public int compareTo(Book other) {
+        int nameComparison = this.name.compareTo(other.name);
+        if (nameComparison != 0) {
+            return nameComparison;
+        }else {
+            return Integer.compare(this.pageNumber, other.pageNumber);
         }
     }
+
+
+
 }

@@ -1,7 +1,4 @@
-import java.util.Calendar;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.TreeSet;
+import java.util.*;
 
 /*Book isminde bir sınıf tasarlayınız.
 Bu sınıf Comparable interface'den kalıtım alıp "compareTo" metodunu override ediniz.
@@ -32,30 +29,31 @@ public class Main {
         Book kitap4= new Book(4,"Kürk Mantolu Madonna ",250,"Sabahattin Ali ","1943");
 
 //5. Kitabı nesnesi
-        Book kitap5= new Book(5,"Ay Işığında Yasak Meyve ",150,"Sevim Burak ","1899");
+        Book kitap5= new Book(5,"Ay Işığında Yasak Meyve ",1500,"Sevim Burak ","1899");
 
 
-        TreeSet<Book> b=new TreeSet<>();
+        List<Book> b=new ArrayList<>();
         b.add(kitap1);
         b.add(kitap2);
         b.add(kitap3);
         b.add(kitap4);
         b.add(kitap5);
+
+        List<Book> bookByName=new ArrayList<>(b);
+        List<Book> bookBypageNumber=new ArrayList<>(b);
 // İsme göre sırala
+        Collections.sort(bookByName,Comparator.comparing(Book::getName));
         System.out.println("Kitapların isme göre sıralanışı:--------------------");
-        for(Book book:b){
+        for(Book book:bookByName){
             System.out.println(book.getName());
         }
 
-        TreeSet<Book> bPage=new TreeSet<>(new PageComperator());
-        bPage.add(kitap1);
-        bPage.add(kitap2);
-        bPage.add(kitap3);
-        bPage.add(kitap4);
-        bPage.add(kitap5);
+
 //Page compare
+
+        Collections.sort(bookBypageNumber,Comparator.comparing(Book::getPageNumber));
         System.out.println("Kitapların sayfa sayısına  göre sıralanışı:-----------------------------");
-        for(Book book:bPage){
+        for(Book book:bookBypageNumber){
             System.out.println(book.getName()+","+book.getPageNumber());
         }
     }
